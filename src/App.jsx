@@ -52,10 +52,15 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav>
-          <Link to="/">Products</Link>
-          <Link to="/cart">Cart</Link>
-        </nav>
+        <header className="App-header">
+          <div className="store-name">
+            <h1>My Product Store</h1>
+          </div>
+          <div className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/cart">Cart</Link>
+          </div>
+        </header>
         <Routes>
           <Route path="/" element={<ProductList products={products} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />} />
           <Route path="/cart" element={<Cart cartItems={cart} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />} />
@@ -125,6 +130,9 @@ function Cart({ cartItems, removeFromCart, increaseQuantity, decreaseQuantity })
         <p className="subtotal">Subtotal: ${totalPrice.toFixed(2)}</p>
         <p className="discount">Discount (10%): -${discount.toFixed(2)}</p>
         <h2 className="final-price">Final Price: ${finalPrice.toFixed(2)}</h2>
+      </div>
+      <div className="nav-links">
+        <Link to="/">Home</Link>
       </div>
     </div>
   );
