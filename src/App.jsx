@@ -90,9 +90,11 @@ function ProductList({ products, cart, addToCart, removeFromCart }) {
         return (
           <div key={product.id} className="product-card">
             <img src={product.image} alt={product.title} className="product-image" />
-            <h2 className="product-title">{product.title.length > 10 ? `${product.title.substring(0, 10)}...` : product.title}</h2>
+            <h2 className="product-title" title={product.title}>
+              {product.title.length > 10 ? `${product.title.substring(0, 10)}...` : product.title}
+            </h2>
             <p className="product-price">${product.price}</p>
-            <p className="product-description">
+            <p className="product-description" title={product.description}>
               {product.description.length > 30 ? `${product.description.substring(0, 30)}...` : product.description}
             </p>
             {inCart ? (

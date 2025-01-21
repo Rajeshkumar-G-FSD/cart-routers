@@ -53,6 +53,8 @@
 .product-image {
   width: 100%;
   height: auto;
+  object-fit: cover;
+  height: 200px; /* Set a fixed height for images */
 }
 
 .product-title {
