@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import './App.css';
 
+
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
@@ -116,25 +117,29 @@ function Cart({ cartItems, removeFromCart, increaseQuantity, decreaseQuantity })
 
   return (
     <div className="cart-page">
-      {cartItems.length === 0 && <p>Your cart is empty.</p>}
-      {cartItems.map(item => (
-        <div key={item.id} className="cart-item">
-          <h2 className="cart-title">{item.title}</h2>
-          <p className="cart-price">Price: ${item.price}</p>
-          <p className="cart-quantity">Quantity: {item.quantity}</p>
-          <p className="cart-total">Total: ${(item.price * item.quantity).toFixed(2)}</p>
-          <button onClick={() => increaseQuantity(item.id)}>+</button>
-          <button onClick={() => decreaseQuantity(item.id)}>-</button>
-          <button onClick={() => removeFromCart(item.id)}>Remove from Cart</button>
-        </div>
-      ))}
+      <div className="cart-grid">
+        {cartItems.length === 0 && <p>Your cart is empty.</p>}
+        {cartItems.map(item => (
+          <div key={item.id} className="cart-item">
+            <img src={item.image} alt={item.title} />
+            <div className="cart-item-details">
+              <h2 className="cart-item-title">{item.title}</h2>
+              <p className="cart-item-price">Price: ${item.price.toFixed(2)}</p>
+              <div className="cart-item-quantity">
+                <button onClick={() => increaseQuantity(item.id)}>+</button>
+                <p>{item.quantity}</p>
+                <button onClick={() => decreaseQuantity(item.id)}>-</button>
+              </div>
+              <p className="cart-item-total">Total: ${(item.price * item.quantity).toFixed(2)}</p>
+              <button onClick={() => removeFromCart(item.id)}>Remove from Cart</button>
+            </div>
+          </div>
+        ))}
+      </div>
       <div className="cart-summary">
         <p className="subtotal">Subtotal: ${totalPrice.toFixed(2)}</p>
         <p className="discount">Discount (10%): -${discount.toFixed(2)}</p>
         <h2 className="final-price">Final Price: ${finalPrice.toFixed(2)}</h2>
-      </div>
-      <div className="nav-links">
-        <Link to="/">Home</Link>
       </div>
     </div>
   );
