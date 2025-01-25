@@ -140,4 +140,5 @@ function Cart({ cartItems, removeFromCart, increaseQuantity, decreaseQuantity })
   );
 }
 
+
 export default App;
